@@ -8,6 +8,13 @@ export default function({ dispatch }) {
     }
 
     //next(action);
-    console.log('We dont have a promise', action);
+    //console.log('We have a promise', action);
+    //Make sure the action's promise resolves
+    action.payload
+      .then(function(response) {
+        //creates a new action
+        const newAction =   { ...action, payload: response };
+        dispatch(newAction);
+      });
   };
 }
